@@ -36,26 +36,51 @@
               </div>
           </div>
         </div>
-
-
-      </div class="page-body">
-        <div class="col-md-3">
-          <img src="" alt="">
-          <h2>Name</h2>
-          <h4>Username</h4>
-          <h6>Add a bio</h6>
-          <hr>
-          <a href="email">email</a>
-          <p>Date Joined</p>
-          <hr>
-          <h5>Organizations</h5>
-          <a href="orgs"></a>
-        </div>
-
-
-
-
     </div>
+    <div class="page-body col-md-12 col-md-push-2">
+      <div id="sidebar">
+
+      </div>
+
+      <div class="col-md-6 heading-menu">
+        <span>Overview</span>
+        <span>Repositories</span>
+        <span>Stars</span>
+        <span>Followers</span>
+        <span>Following</span>
+      </div>
+      <hr>
+      <div class="drop-menu">
+        <form action="search">
+          <input type="text" placeholder="Search repositories">
+        </form>
+        <hr>
+      </div>
+    </div>
+
+    <script id="sidebar-template" type="text/x-handlebars-template">
+          <div class="col-md-2">
+
+            <!-- <div class="sidebar-top"> -->
+              <!-- <div class="profile"> -->
+              <img src="{{ avatarUrl }}" alt="">
+              <!-- </div> -->
+              <h2 class="name">{{ name }}</h2>
+              <h4 class="username">{{ logIn }}</h4>
+              <h6 class="bio">Add a bio</h6>
+            <!-- </div> -->
+
+            <!-- <div class="email"> -->
+              <a href="#">{{ email }}</a>
+            <!-- </div> -->
+
+            <!-- <div class="orgs"> -->
+              <h5>Organizations</h5>
+              <img src="{{ orgs }}" alt="">
+            <!-- </div> -->
+
+          </div>
+        </script>
 
     <script src="js/bundle.js"></script>
   </body>
