@@ -16,11 +16,11 @@ if(githubtoken !== undefined){
 }
 
 var source = $("#sidebar-template").html();
-console.log(source);
+// console.log(source);
 var template = Handlebars.compile(source);
 
 $.ajax('https://api.github.com/users/anniemiko').done(function(data){
- console.log(data)
+ // console.log(data);
    var content = {
      avatarUrl: data.avatar_url,
      name: data.name,
@@ -34,15 +34,24 @@ $.ajax('https://api.github.com/users/anniemiko').done(function(data){
  }
 
   $('#sidebar').append(template(content));
-  console.log($('#sidebar'));
 });
 
+var repoSource = $("#repos-template").html();
+// console.log(repoSource);
+var templateRepo = Handlebars.compile(repoSource);
 
 $.ajax('https://api.github.com/users/anniemiko/repos').done(function(data){
-  ar content = {
-    repo: data.repo,
-  }
+  console.log(data);
+  _.each(data, function(repos){
+    console.log(repos);
+    var content = {
+      name: repos.name,
+      language: repos.language,
+      updated: repos.updated_at
+    };
 
-   $('#sidebar').append(template(content));
-   console.log($('#sidebar'));
+   $('#repositories').append(templateRepo(content));
+   console.log($('#repositories'));
+  });
+
  });
