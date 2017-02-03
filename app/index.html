@@ -11,30 +11,36 @@
     <div class="wrapper">
 
       <div class="well">
-        <div class="col-md-7">
-          <a href="icon"></a>
+        <div class="col-md-7 col-md-push-2">
+          <img class="git-icon" src="../app/images/mark-github.svg" alt="">
           <form action="search">
-            <input type="text" placeholder="Search Github">
+            <input type="text" placeholder="Search Github" id="search-bar">
           </form>
           <a href="pullrequest">Pull request</a>
           <a href="Issues">Issues</a>
           <a href="Gist">Gist</a>
         </div>
 
-        <div class="col-md-1 col-push-3">
-        <!-- Split button -->
-          <div class="btn-group">
-              <button type="button" class="btn btn-primary">+</button>
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <div class="dropdown-menu">
-                  <a class="dropdown-item" href="https://github.com/new">New repository</a>
-                  <a class="dropdown-item" href="https://github.com/new/import">Import repository</a>
-                  <a class="dropdown-item" href="https://gist.github.com/">New gist</a>
-                  <a class="dropdown-item" href="https://github.com/organizations/new">New organization</a>
-              </div>
-          </div>
+        <div class="col-md-3 col-push-3">
+        <!-- drop-downs -->
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-plus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <img src="../app/images/plus.svg" alt="">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="https://github.com/new">New repository</a></li>
+            <li><a href="https://github.com/new/import">Import repository</a></li>
+            <li><a href="https://gist.github.com/">New gist</a></li>
+            </li>
+            <li><a href="https://github.com/organizations/new">New organization</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown" id="avatar-dropdown">
+
+        </div>
+
         </div>
     </div>
     <div class="page-body col-md-12 col-md-push-2">
@@ -55,12 +61,33 @@
           <input type="text" placeholder="Search repositories">
         </form>
         <hr>
+      </div>
 
         <div id="repositories">
 
         </div>
-      </div>
     </div>
+  </div>
+
+    <script type="text/x-handlebars-template" id="dropdown-template">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-pic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <img src="{{ avatar }}" alt="">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <li><p>Signed in as</p><p>{{ logIn }}</p></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="{{ profile }}">Your profile</a></li>
+        <li><a href="{{ stars }}t">Your stars</a></li>
+        <li><a href="https://github.com/explore">Explore</a></li>
+        </li>
+        <li><a href="https://github.com/integrations">Integrations</a></li>
+        <li><a href="https://help.github.com/">Help</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="https://github.com/settings/profile">Settings</a></li>
+        <li><a href="https://github.com/">Settings</a></li>
+      </ul>
+    </script>
 
     <script id="repos-template" type="text/x-handlebars-template">
       <div class="col-md-6">

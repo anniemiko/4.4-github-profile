@@ -41,17 +41,41 @@ var repoSource = $("#repos-template").html();
 var templateRepo = Handlebars.compile(repoSource);
 
 $.ajax('https://api.github.com/users/anniemiko/repos').done(function(data){
-  console.log(data);
-  _.each(data, function(repos){
-    console.log(repos);
+  // console.log(data);
+
+  var sortedData =  _.sortBy(data,"updated_at").reverse();
+  console.log(sortedData);
+
+  _.each(sortedData, function(repos){
+    // console.log(repos);
     var content = {
       name: repos.name,
       language: repos.language,
       updated: repos.updated_at
     };
 
-   $('#repositories').append(templateRepo(content));
-   console.log($('#repositories'));
+    $('#repositories').append(templateRepo(content));
+    // console.log($('#repositories'));
+
   });
 
- });
+
+  });
+
+
+
+ var dropdownSource = $("#dropdown-template").html();
+ // console.log(dropdownSource);
+ var templateDD = Handlebars.compile(dropdownSource);
+
+ $.ajax('https://api.github.com/users/anniemiko').done(function(data){
+  //  console.log(data);
+     var content = {
+       avatar: data.avatar_url,
+       profile: data.html_url,
+       stars: data.starred_url,
+       logIn: data.login,
+     };
+
+     $('#avatar-dropdown').append(templateDD(content));
+   });
