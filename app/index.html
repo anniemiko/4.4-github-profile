@@ -16,12 +16,12 @@
           <form action="search">
             <input type="text" placeholder="Search Github" id="search-bar">
           </form>
-          <a href="pullrequest">Pull request</a>
-          <a href="Issues">Issues</a>
-          <a href="Gist">Gist</a>
+          <a href="https://github.com/pulls">Pull request</a>
+          <a href="https://github.com/issues">Issues</a>
+          <a href="https://gist.github.com/">Gist</a>
         </div>
 
-        <div class="col-md-3 col-push-3">
+        <div class="col-md-3 col-push-3" id="dropdowns">
         <!-- drop-downs -->
         <div class="dropdown">
           <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-plus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -43,31 +43,83 @@
 
         </div>
     </div>
-    <div class="page-body col-md-12 col-md-push-2">
-      <div id="sidebar">
+    <div class="row">
+      <div class="page-body col-md-10 col-md-push-2">
+        <div class="col-md-3" id="sidebar">
 
-      </div>
+        </div>
 
-      <div class="col-md-6 heading-menu">
-        <span>Overview</span>
-        <span>Repositories</span>
-        <span>Stars</span>
-        <span>Followers</span>
-        <span>Following</span>
-      </div>
-      <hr>
-      <div class="drop-menu">
-        <form action="search">
-          <input type="text" placeholder="Search repositories">
-        </form>
-        <hr>
-      </div>
+        <div class="col-md-9">
+          <div id="topbar">
+            <div id="scroller-anchor"></div>
+            <div id="scroller" class="staticbar" style="padding-top:20px">
+            <!-- Scroller Scroller Scroller -->
+            </div>
+          </div>
 
-        <div id="repositories">
+          <div class="drop-menu">
+            <form action="search">
+              <input type="text" placeholder="Search repositories">
+            </form>
 
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span>Type: </span><span>All</span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuType">
+                <li><p>Select type</p></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">All</a></li>
+                <li><a href="#">Public</a></li>
+                <li><a href="#">Private</a></li>
+                </li>
+                <li><a href="#">Sources</a></li>
+                <li><a href="#">Forks</a></li>
+                <li><a href="#">Mirrors</a></li>
+              </ul>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span>Language: </span><span>All</span>
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLang">
+                <li><p>Select language</p></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">All</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">HTML</a></li>
+                </li>
+                <li><a href="#">Javascript</a></li>
+                <li><a href="#">Ruby</a></li>
+                <li><a href="#">Shell</a></li>
+              </ul>
+            </div>
+            <button class="btn btn-default" type="button" id="new-repo" aria-haspopup="true" aria-expanded="true"><a href="https://github.com/new">
+              <span><img src="../app/images/repo.svg" alt=""></span><span> New</span>
+              </a>
+            </button>
+
+          </div>
+
+            <div id="repositories">
+
+            </div>
+          </div>
         </div>
     </div>
   </div>
+
+    <script type="text/x-handlebars-template" id="staticbar-template">
+      <div class="heading-menu">
+        <span>Overview</span>
+        <span>Repositories</span><span class="repo-number">{{ repoNum }}</span>
+        <span>Stars</span><span class="star-number">{{ starNum }}</span>
+        <span>Followers</span><span class="followers-number">{{ followersNum }}</span>
+        <span>Following</span><span class="following-number">{{ followingNum }}</span>
+      </div>
+    </script>
 
     <script type="text/x-handlebars-template" id="dropdown-template">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-pic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -78,46 +130,39 @@
         <li><p>Signed in as</p><p>{{ logIn }}</p></li>
         <li role="separator" class="divider"></li>
         <li><a href="{{ profile }}">Your profile</a></li>
-        <li><a href="{{ stars }}t">Your stars</a></li>
+        <li><a href="https://github.com/anniemiko?tab=stars">Your stars</a></li>
         <li><a href="https://github.com/explore">Explore</a></li>
         </li>
         <li><a href="https://github.com/integrations">Integrations</a></li>
         <li><a href="https://help.github.com/">Help</a></li>
         <li role="separator" class="divider"></li>
         <li><a href="https://github.com/settings/profile">Settings</a></li>
-        <li><a href="https://github.com/">Settings</a></li>
+        <li><a href="https://github.com/">Sign out</a></li>
       </ul>
     </script>
 
     <script id="repos-template" type="text/x-handlebars-template">
-      <div class="col-md-6">
+      <div class="col-md-9">
         <h3>{{ name }}</h3>
-        <span>{{ language }}</span>
-        <span>{{ updated }}</span>
+        <span class="repo-color-{{language}}"></span>
+        <span class="repo-text">{{ language }}</span>
+        <span class="repo-text" id="updated">Updated {{ updated }}</span>
         <hr>
       </div>
     </script>
 
     <script id="sidebar-template" type="text/x-handlebars-template">
-          <div class="col-md-2">
+          <div>
 
-            <!-- <div class="sidebar-top"> -->
-              <!-- <div class="profile"> -->
               <img src="{{ avatarUrl }}" alt="">
-              <!-- </div> -->
               <h2 class="name">{{ name }}</h2>
               <h4 class="username">{{ logIn }}</h4>
               <h6 class="bio">Add a bio</h6>
-            <!-- </div> -->
-
-            <!-- <div class="email"> -->
+              <hr>
               <a href="#">{{ email }}</a>
-            <!-- </div> -->
-
-            <!-- <div class="orgs"> -->
+              <hr>
               <h5>Organizations</h5>
               <img src="{{ orgs }}" alt="">
-            <!-- </div> -->
 
           </div>
         </script>

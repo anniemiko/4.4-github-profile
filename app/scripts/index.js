@@ -4,6 +4,7 @@ var Handlebars = require('handlebars');
 var githubtoken = require('./gitapikey.js');
 var octicons = require("octicons");
 var bootstrap = require('bootstrap-sass');
+var moment = require('moment');
 
 // Send auth token to github if token is provided
 if(githubtoken !== undefined){
@@ -30,7 +31,7 @@ $.ajax('https://api.github.com/users/anniemiko').done(function(data){
      htmlUrl: data.html_url,
      created: data.created_at,
      logIn: data.login,
-     orgs: data.organizations_url,
+     orgs: data.organizations_url
  }
 
   $('#sidebar').append(template(content));
@@ -44,14 +45,14 @@ $.ajax('https://api.github.com/users/anniemiko/repos').done(function(data){
   // console.log(data);
 
   var sortedData =  _.sortBy(data,"updated_at").reverse();
-  console.log(sortedData);
+  // console.log(sortedData);
 
   _.each(sortedData, function(repos){
     // console.log(repos);
     var content = {
       name: repos.name,
       language: repos.language,
-      updated: repos.updated_at
+      updated: moment(repos.updated_at).fromNow()
     };
 
     $('#repositories').append(templateRepo(content));
@@ -79,3 +80,49 @@ $.ajax('https://api.github.com/users/anniemiko/repos').done(function(data){
 
      $('#avatar-dropdown').append(templateDD(content));
    });
+
+  //  adding sticky navbar - http://stackoverflow.com/questions/1216114/how-can-i-make-a-div-stick-to-the-top-of-the-screen-once-its-been-scrolled-to
+
+  var navbarSource = $("#staticbar-template").html();
+  var templateSB = Handlebars.compile(navbarSource);
+
+  $.ajax('https://api.github.com/users/anniemiko').done(function(data){
+    console.log(data);
+      var content = {
+        repoNum: data.public_repos,
+        starNum: data.starred_url.length,
+        followersNum: data.followers,
+        followingNum: data.following,
+      };
+
+      $('.staticbar').append(templateSB(content));
+    });
+
+  function moveScroller() {
+    var $anchor = $("#scroller-anchor");
+    var $scroller = $('#scroller');
+
+    var move = function() {
+        var st = $(window).scrollTop();
+        var ot = $anchor.offset().top;
+        if(st > ot) {
+            $scroller.css({
+                position: "fixed",
+                top: "0px"
+            });
+        } else {
+            if(st <= ot) {
+                $scroller.css({
+                    position: "relative",
+                    top: ""
+                });
+            }
+        }
+    };
+    $(window).scroll(move);
+    move();
+}
+
+$(function() {
+    moveScroller();
+  });

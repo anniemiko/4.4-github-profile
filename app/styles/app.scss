@@ -25,6 +25,12 @@ height: 30px;
 width: 30px;
 }
 
+.well a{
+  margin: 8px;
+  color: #333333;
+  font-weight: bold;
+}
+
 form{
   display: inline-block;
   text-align: center;
@@ -33,11 +39,128 @@ form{
 #search-bar{
   padding-right: 150px;
 }
-
 .dropdown{
   display: inline-block;
+}
+.dropdown button{
+  background-color: #F5F5F5;
+  border: none;
+  display: inline-block;
+}
+
+#dropdowns{
+  padding-left: 200px;
 }
 
 #dropdown-pic img{
   height: 20px;
+  border-radius: 3px;
+}
+
+.heading-menu span{
+  margin: 15px;
+  color: #7E7676;
+}
+
+.heading-menu{
+padding-bottom: 15px;
+border-bottom: 1px solid lightgrey;
+}
+
+.repo-number, .star-number, .followers-number, .following-number{
+  background-color: #EEEEEE;
+  border-radius: 40%;
+  padding: 1px 5px;
+}
+
+.drop-menu{
+border-bottom: 1px solid lightgrey;
+margin: 10px 0px;
+padding-bottom: 10px;
+}
+
+.drop-menu input{
+  padding: 5px 150px 5px 5px;
+}
+
+#sidebar img{
+  border-radius: 7px;
+}
+.bio{
+  color: #4078C0;
+}
+
+h3{
+  color: #4078C0;
+  font-size: 20px;
+}
+
+.repo-color-HTML{
+    background-color: red;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.repo-color-CSS{
+    background-color: purple;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.repo-color-JavaScript{
+    background-color: yellow;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+
+.repo-text{
+  color: #76767E;
+  font-size: 12px;
+}
+
+#updated{
+  margin-left: 10px;
+}
+
+#scroller{
+  z-index: 100;
+  background-color: #FFFFFF;
+}
+
+#new-repo{
+  border-top: 1px solid #05591e;
+  background: #2a8f25;
+  background: -webkit-gradient(linear, left top, left bottom, from(#60d457), to(#2a8f25));
+   background: -webkit-linear-gradient(top, #60d457, #2a8f25);
+   background: -moz-linear-gradient(top, #60d457, #2a8f25);
+   background: -ms-linear-gradient(top, #60d457, #2a8f25);
+   background: -o-linear-gradient(top, #60d457, #2a8f25);
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: white;
+  fill: currentColor;
+}
+
+#new-repo a{
+  color: white;
+  text-decoration: none;
+}
+
+#new-repo:hover{
+  border-top-color: #177825;
+   background: #177825;
+   color: white;
 }
