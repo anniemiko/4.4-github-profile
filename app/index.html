@@ -45,11 +45,14 @@
     </div>
     <div class="row">
       <div class="page-body col-md-10 col-md-push-2">
-        <div class="col-md-3" id="sidebar">
-
+        <div class="col-md-3">
+          <div id="sidebar">
+          </div>
+          <div id="orgs">
+          </div>
         </div>
 
-        <div class="col-md-9">
+        <div class="col-md-7">
           <div id="topbar">
             <div id="scroller-anchor"></div>
             <div id="scroller" class="staticbar" style="padding-top:20px">
@@ -64,8 +67,8 @@
 
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span>Type: </span><span>All</span>
-                <span class="caret"></span>
+                <span class="drop-title">Type: </span><span class="drop-list">All</span>
+                <span class="caret drop-list"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuType">
                 <li><p>Select type</p></li>
@@ -81,8 +84,8 @@
             </div>
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span>Language: </span><span>All</span>
-                <span class="caret"></span>
+                <span class="drop-title">Language: </span><span class="drop-list">All</span>
+                <span class="caret drop-list"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuLang">
                 <li><p>Select language</p></li>
@@ -104,24 +107,33 @@
           </div>
 
             <div id="repositories">
-
             </div>
+
           </div>
         </div>
     </div>
   </div>
 
-    <script type="text/x-handlebars-template" id="staticbar-template">
+      <script id="org-template" type="text/x-handlebars-template">
+        <div>
+
+            <h4>Organizations</h4>
+            <img src="{{ orgs }}" alt="">
+
+        </div>
+      </script>
+
+      <script type="text/x-handlebars-template" id="staticbar-template">
       <div class="heading-menu">
-        <span>Overview</span>
-        <span>Repositories</span><span class="repo-number">{{ repoNum }}</span>
-        <span>Stars</span><span class="star-number">{{ starNum }}</span>
-        <span>Followers</span><span class="followers-number">{{ followersNum }}</span>
-        <span>Following</span><span class="following-number">{{ followingNum }}</span>
+        <span class="hm">Overview</span>
+        <span class="hm">Repositories</span><span class="hm-number">{{ repoNum }}</span>
+        <span class="hm">Stars</span><span class="hm-number">{{ starNum }}</span>
+        <span class="hm">Followers</span><span class="hm-number">{{ followersNum }}</span>
+        <span class="hm">Following</span><span class="hm-number">{{ followingNum }}</span>
       </div>
     </script>
 
-    <script type="text/x-handlebars-template" id="dropdown-template">
+      <script type="text/x-handlebars-template" id="dropdown-template">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-pic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
         <img src="{{ avatar }}" alt="">
         <span class="caret"></span>
@@ -141,17 +153,18 @@
       </ul>
     </script>
 
-    <script id="repos-template" type="text/x-handlebars-template">
-      <div class="col-md-9">
+      <script id="repos-template" type="text/x-handlebars-template">
+      <div class="col-md-12">
         <h3>{{ name }}</h3>
         <span class="repo-color-{{language}}"></span>
         <span class="repo-text">{{ language }}</span>
         <span class="repo-text" id="updated">Updated {{ updated }}</span>
+        <span class="stat-line"></span>
         <hr>
       </div>
     </script>
 
-    <script id="sidebar-template" type="text/x-handlebars-template">
+      <script id="sidebar-template" type="text/x-handlebars-template">
           <div>
 
               <img src="{{ avatarUrl }}" alt="">
@@ -159,14 +172,16 @@
               <h4 class="username">{{ logIn }}</h4>
               <h6 class="bio">Add a bio</h6>
               <hr>
-              <a href="#">{{ email }}</a>
+              <a href="mailto:andrea.f.baty@gmail.com"><img src="../app/images/mail.svg" alt=""> {{ email }}</a>
               <hr>
-              <h5>Organizations</h5>
-              <img src="{{ orgs }}" alt="">
 
           </div>
-        </script>
+      </script>
 
+    <script type="text/javascript" src="app/scripts/jquery.sparkline.min.js">
+
+    </script>
     <script src="js/bundle.js"></script>
+
   </body>
 </html>

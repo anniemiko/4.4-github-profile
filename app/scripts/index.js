@@ -126,3 +126,16 @@ $.ajax('https://api.github.com/users/anniemiko/repos').done(function(data){
 $(function() {
     moveScroller();
   });
+
+  var orgSource = $("#org-template").html();
+  // console.log(source);
+  var orgTemplate = Handlebars.compile(orgSource);
+
+  $.ajax('https://api.github.com/users/anniemiko/orgs').done(function(data){
+   console.log(data);
+     var content = {
+       orgs: data[0].avatar_url
+   }
+
+    $('#orgs').append(orgTemplate(content));
+  });

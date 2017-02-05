@@ -58,8 +58,11 @@ form{
 }
 
 .heading-menu span{
-  margin: 15px;
   color: #7E7676;
+}
+
+.hm{
+  margin-left: 20px;
 }
 
 .heading-menu{
@@ -67,10 +70,11 @@ padding-bottom: 15px;
 border-bottom: 1px solid lightgrey;
 }
 
-.repo-number, .star-number, .followers-number, .following-number{
+.hm-number{
   background-color: #EEEEEE;
   border-radius: 40%;
   padding: 1px 5px;
+  margin-left: 5px;
 }
 
 .drop-menu{
@@ -81,6 +85,20 @@ padding-bottom: 10px;
 
 .drop-menu input{
   padding: 5px 150px 5px 5px;
+  margin-right: 15px;
+}
+
+.drop-title{
+  color: #828282;
+  opacity: 0.9;
+}
+
+.drop-list{
+  font-weight: bold;
+}
+
+#dropdown-type{
+  border: 1px solid #D5D5D5;
 }
 
 #sidebar img{
@@ -88,6 +106,10 @@ padding-bottom: 10px;
 }
 .bio{
   color: #4078C0;
+}
+#orgs img{
+  height: 35px;
+  border-radius: 3px;
 }
 
 h3{
@@ -125,10 +147,16 @@ h3{
     border-radius: 50%;
 }
 
-
 .repo-text{
   color: #76767E;
   font-size: 12px;
+}
+
+.stat-line{
+  width: 100px;
+  height: 2px;
+  background-color: #E2EDA9;
+  float: right;
 }
 
 #updated{
@@ -152,6 +180,7 @@ h3{
   border-radius: 8px;
   color: white;
   fill: currentColor;
+  margin-left: 10px;
 }
 
 #new-repo a{
