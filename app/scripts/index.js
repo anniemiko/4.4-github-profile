@@ -53,6 +53,7 @@ $.ajax('https://api.github.com/users/anniemiko/repos').done(function(data){
       name: repos.name,
       language: repos.language,
       updated: moment(repos.updated_at).fromNow()
+      // stats: repos.owner.repos_url
     };
 
     $('#repositories').append(templateRepo(content));
@@ -85,18 +86,27 @@ $.ajax('https://api.github.com/users/anniemiko/repos').done(function(data){
 
   var navbarSource = $("#staticbar-template").html();
   var templateSB = Handlebars.compile(navbarSource);
+  Handlebars.registerPartial("stars", $("#stars-partial").html());
 
   $.ajax('https://api.github.com/users/anniemiko').done(function(data){
-    console.log(data);
+    // console.log(data);
       var content = {
         repoNum: data.public_repos,
-        starNum: data.starred_url.length,
         followersNum: data.followers,
         followingNum: data.following,
       };
 
       $('.staticbar').append(templateSB(content));
     });
+
+    $.ajax('https://api.github.com/users/anniemiko/starred').done(function(data){
+      console.log(data);
+        var context = {
+          starNum: data.length,
+        };
+
+        $('.stars').append(templateSB(context));
+      });
 
   function moveScroller() {
     var $anchor = $("#scroller-anchor");
@@ -127,15 +137,22 @@ $(function() {
     moveScroller();
   });
 
+// adding org image
   var orgSource = $("#org-template").html();
   // console.log(source);
   var orgTemplate = Handlebars.compile(orgSource);
 
   $.ajax('https://api.github.com/users/anniemiko/orgs').done(function(data){
-   console.log(data);
+  //  console.log(data);
      var content = {
        orgs: data[0].avatar_url
    }
 
     $('#orgs').append(orgTemplate(content));
   });
+
+$('#search-bar').onsubmit = function() {
+        window.location = 'http://www.google.com/search?q=site:github.com'
+      };
+
+  $('.static-line').popover('show');

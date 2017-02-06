@@ -110,7 +110,29 @@
             </div>
 
           </div>
+      </div>
+    </div>
+
+    <div class="col-md-9 col-md-push-2">
+      <footer>
+        <div class="left-footer">
+          <span class="copyright">&copy; 2017 GitHub, Inc.</span>
+          <span>Terms</span>
+          <span>Privacy</span>
+          <span>Security</span>
+          <span>Status</span>
+          <span>Help</span>
         </div>
+        <img src="../app/images/mark-github-grey.svg" alt="">
+        <div class="right-footer">
+          <span>Contact GitHub</span>
+          <span>API</span>
+          <span>Training</span>
+          <span>Shop</span>
+          <span>Blog</span>
+          <span>About</span>
+        </div>
+      </footer>
     </div>
   </div>
 
@@ -124,14 +146,20 @@
       </script>
 
       <script type="text/x-handlebars-template" id="staticbar-template">
-      <div class="heading-menu">
-        <span class="hm">Overview</span>
-        <span class="hm">Repositories</span><span class="hm-number">{{ repoNum }}</span>
-        <span class="hm">Stars</span><span class="hm-number">{{ starNum }}</span>
-        <span class="hm">Followers</span><span class="hm-number">{{ followersNum }}</span>
-        <span class="hm">Following</span><span class="hm-number">{{ followingNum }}</span>
-      </div>
-    </script>
+        <div class="heading-menu">
+          <span class="hm">Overview</span>
+          <span class="hm">Repositories</span><span class="hm-number">{{ repoNum }}</span>
+          <span>{{> stars }}</span>
+          <span class="hm">Followers</span><span class="hm-number">{{ followersNum }}</span>
+          <span class="hm">Following</span><span class="hm-number">{{ followingNum }}</span>
+        </div>
+      </script>
+
+      <script type="text/x-handlebars-template" id="stars-partial">
+        <div class="stars">
+          <span class="hm">Stars</span><span class="hm-number">{{ starNum }}</span>
+        </div>
+      </script>
 
       <script type="text/x-handlebars-template" id="dropdown-template">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-pic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -154,15 +182,15 @@
     </script>
 
       <script id="repos-template" type="text/x-handlebars-template">
-      <div class="col-md-12">
-        <h3>{{ name }}</h3>
-        <span class="repo-color-{{language}}"></span>
-        <span class="repo-text">{{ language }}</span>
-        <span class="repo-text" id="updated">Updated {{ updated }}</span>
-        <span class="stat-line"></span>
-        <hr>
-      </div>
-    </script>
+        <div class="col-md-12">
+          <h3>{{ name }}</h3>
+          <span class="repo-color-{{language}}"></span>
+          <span class="repo-text">{{ language }}</span>
+          <span class="repo-text" id="updated">Updated {{ updated }}</span>
+          <span class="stat-line" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Past year of activity">{{ stats }}</span>
+          <hr>
+        </div>
+      </script>
 
       <script id="sidebar-template" type="text/x-handlebars-template">
           <div>
@@ -178,7 +206,7 @@
           </div>
       </script>
 
-    <script type="text/javascript" src="app/scripts/jquery.sparkline.min.js">
+    <!-- <script type="text/javascript" src="app/scripts/jquery.sparkline.min.js"> -->
 
     </script>
     <script src="js/bundle.js"></script>

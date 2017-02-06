@@ -77,6 +77,10 @@ border-bottom: 1px solid lightgrey;
   margin-left: 5px;
 }
 
+.stars{
+  display: inline-block;
+}
+
 .drop-menu{
 border-bottom: 1px solid lightgrey;
 margin: 10px 0px;
@@ -192,4 +196,38 @@ h3{
   border-top-color: #177825;
    background: #177825;
    color: white;
+}
+
+footer{
+  border-top: 1px solid #EEEEEE;
+  padding: 35px 0px;
+}
+
+footer .copyright{
+  color: #7E767E;
+}
+
+footer span{
+  font-size: 13px;
+  color: #4078C0;
+  margin: 5px;
+}
+
+.left-footer{
+  display: inline-block;
+}
+
+.right-footer{
+  float: right;
+  display: inline-block;
+}
+
+footer img{
+  display: inline-block;
+  margin-left: 130px;
+  height: 20px;
+}
+
+.page-body{
+  margin-bottom: 30px;
 }
