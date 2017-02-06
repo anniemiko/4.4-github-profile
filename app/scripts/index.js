@@ -1,7 +1,7 @@
 var $ = window.$ = window.jQuery = require('jquery');
 var _ = require('underscore');
 var Handlebars = require('handlebars');
-var githubtoken = require('./gitapikey.js');
+var githubtoken; //= require('./gitapikey.js');
 var octicons = require("octicons");
 var bootstrap = require('bootstrap-sass');
 var moment = require('moment');
@@ -86,27 +86,22 @@ $.ajax('https://api.github.com/users/anniemiko/repos').done(function(data){
 
   var navbarSource = $("#staticbar-template").html();
   var templateSB = Handlebars.compile(navbarSource);
-  Handlebars.registerPartial("stars", $("#stars-partial").html());
+  // Handlebars.registerPartial("stars", $("#stars-partial").html());
 
-  $.ajax('https://api.github.com/users/anniemiko').done(function(data){
-    // console.log(data);
-      var content = {
-        repoNum: data.public_repos,
-        followersNum: data.followers,
-        followingNum: data.following,
-      };
+  var navbarPromise = $.ajax('https://api.github.com/users/anniemiko');
+    var starPromise = $.ajax('https://api.github.com/users/anniemiko/starred');
 
-      $('.staticbar').append(templateSB(content));
-    });
+      Promise.all([navbarPromise, starPromise]).then(function(data){
+        console.log(data);
+          var content = {
+            repoNum: data[0].public_repos,
+            followersNum: data[0].followers,
+            followingNum: data[0].following,
+            starNum: data[1].length,
+          };
 
-    $.ajax('https://api.github.com/users/anniemiko/starred').done(function(data){
-      console.log(data);
-        var context = {
-          starNum: data.length,
-        };
-
-        $('.stars').append(templateSB(context));
-      });
+          $('.staticbar').append(templateSB(content));
+        });
 
   function moveScroller() {
     var $anchor = $("#scroller-anchor");
